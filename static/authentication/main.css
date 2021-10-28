@@ -1,0 +1,46 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+form {
+    border: solid 2px lightgray;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    width: 30%;
+    height: auto;
+}
+
+input {
+    margin: 1rem 0;
+    display: block !important;
+}
+
+.title {
+    font-size: x-large;
+    text-align: center;
+    border-bottom: 2px solid lightgray;
+    width: 100%;
+}
+
+.show {
+    text-align: right;
+    width:fit-content;
+    cursor:pointer;
+    float:right;
+    transition:all 100ms ease-in-out;
+}
+.show:hover{
+    font-size: larger;
+}
+.messages{
+    padding: 0rem;
+    padding-top:1rem;
+
+    list-style: none;
+}
