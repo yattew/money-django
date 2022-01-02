@@ -42,7 +42,7 @@ class LoginView(View):
             if user:
                 auth.login(request,user)
                 messages.success(request,f"welcome {user.username}, you are now logged in")
-                return redirect('index')
+                return redirect('expenses')
             else:
                 messages.error(request,"invalid credentials")
         else:

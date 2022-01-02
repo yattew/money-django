@@ -48,7 +48,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{% url 'expenses' %}">
                                 <span data-feather="file"></span>
                                 Expenses
                             </a>
@@ -121,17 +121,11 @@
                     </ul>
                 </div>
             </nav>
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                    <li {% if message.tags %} class="alert alert-sm alert-{{ message.tags }}" {% endif %}>
-                        {{ message }}
-                    </li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-                {% block content %} {% endblock %}
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-2">
+                <div class="container">
+                    {% include 'base/messages.html' %}
+                    {% block content %} {% endblock %}
+                </div>
             </main>
         </div>
     </div>

@@ -4,13 +4,7 @@
 <form action="{% url 'register' %}" method="POST">
     {% csrf_token %}
     <div class="title">Register</div>
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="alert alert-sm alert-{{ message.tags }}" {% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+    {% include 'base/messages.html' %}
     <input type="text" class="form-control" name="username" id="username" placeholder="Username" />
     <div class="username-feedback" style="display:none"></div>
     <input type="text" class="form-control" name="email" id="email" placeholder="Email" />
