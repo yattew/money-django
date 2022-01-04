@@ -32,7 +32,7 @@
             </select>
 
             <label for="" class="from-label">Date</label>
-            <input type="date" class="form-control mb-3" name="date">
+            <input type="date" class="form-control mb-3" name="date" value="{{ values.date|date:'Y-m-d' }}">
 
             <input type="submit" value="Update" class="btn btn-primary">
         </form>

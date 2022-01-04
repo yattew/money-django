@@ -52,8 +52,6 @@ function update_table(search_querry = "",page_num = 1) {
 };
 update_table();
 
-
-
 //even listeners
 search_input.addEventListener('keyup', (e) => {
     const search_val = e.target.value;

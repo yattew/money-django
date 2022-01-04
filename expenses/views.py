@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.core import paginator
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -8,20 +9,16 @@ from django.core.paginator import Paginator
 import json
 from django.db.models import Q
 from django.http import JsonResponse
+from user_preferences.models import UserPreference
 # Create your views here.
 
 
 @login_required(login_url='/auth/login')
 def index(request):
-    # expenses = Expense.objects.filter(owner=request.user)
-    # paginator = Paginator(expenses, 4)
-    # page_num = request.GET.get('page')
-    # page_obj = paginator.get_page(page_num)
-    # context = {
-    #     "expenses": expenses,
-    #     "page_obj": page_obj
-    # }
-    context = {}
+    currency = UserPreference.objects.get(user=request.user).currency
+    context = {
+        "currency":currency
+    }
     return render(request, 'expenses/index.html', context)
 
 
