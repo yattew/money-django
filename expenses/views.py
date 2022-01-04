@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.core import paginator
+from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Category, Expense
@@ -10,6 +11,7 @@ import json
 from django.db.models import Q
 from django.http import JsonResponse
 from user_preferences.models import UserPreference
+import datetime
 # Create your views here.
 
 
@@ -117,3 +119,18 @@ def expense_search(request,page_num=1):
         "tot_pages":page_obj.paginator.num_pages,
         }
     return JsonResponse(data, safe=False)
+
+
+def expense_summary(request):
+    curr_date = datetime.date.today()
+    date_30_day_before = curr_date-datetime.timedelta(days=30)
+    expenses = Expense.objects.filter(owner = request.user,date__gte=date_30_day_before)
+    data = {}
+    for expense in expenses:
+        if expense.category not in data:
+            data[expense.category] = expense.ammount
+        else:
+            data[expense.category]+=expense.ammount
+    
+    # for i in expenses:
+    return JsonResponse({"summary":data})

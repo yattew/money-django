@@ -1,5 +1,8 @@
 {% extends '../base/base.html' %}
 {% load static %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'expenses/main.css' %}">
+{% endblock %}
 {% block content %}
 <div class="row">
     <div class="col-md-10">
@@ -48,5 +51,9 @@
         </ul>
     </nav>
 </div>
+<div class="expense-chart-container">
+    <canvas id="expense-chart"></canvas>
+</div>
+
 <script src="{% static 'expenses/index.js' %}"></script>
 {% endblock %}

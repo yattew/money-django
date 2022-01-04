@@ -8,5 +8,6 @@ urlpatterns = [
     path('add_expense/',add_expense,name="add_expense"),
     path('edit_expense/<int:id>',edit_expense,name="edit_expense"),
     path('delete_expense/<int:id>',delete_expense,name="delete_expense"),
-    path('expense_search/<int:page_num>',csrf_exempt(expense_search),name="expense_search")
+    path('expense_search/<int:page_num>',csrf_exempt(expense_search),name="expense_search"),
+    path('expense_summary',csrf_exempt(expense_summary),name="expense_summary")
 ]

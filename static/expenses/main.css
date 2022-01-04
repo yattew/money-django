@@ -1,0 +1,8 @@
+.expense-chart-container{
+    width:50%;
+    height:300px;
+}
+.expense-chart-container > canvas{
+    height:100%;
+    width: 100%;
+}
