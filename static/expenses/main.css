@@ -1,8 +1,27 @@
-.expense-chart-container{
-    width:50%;
-    height:300px;
+.pie-chart-container{
+    width:45%;
+    height:350px;
+    padding:1rem;
+    border:1px rgb(180, 178, 178) solid;
+    border-radius: 3px;
+
 }
-.expense-chart-container > canvas{
+.pie-chart-container > canvas{
+    height:100%;
+    width: 100%;
+}
+.expense-table-container{
+    min-height:260px;
+}
+
+.line-chart-container{
+    width:45%;
+    height:350px;
+    padding:1rem;
+    border:1px rgb(180, 178, 178) solid;
+    border-radius: 3px;
+}
+.line-chart-container > div{
     height:100%;
     width: 100%;
 }

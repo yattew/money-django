@@ -3,57 +3,60 @@
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'expenses/main.css' %}">
 {% endblock %}
+{% block breadcrumb %}
+<span class="text-capitalize">/ expenses</span>
+{% endblock %}
 {% block content %}
-<div class="row">
-    <div class="col-md-10">
-        <nav aria-label="breadcrumb" class="navbar navbar-light bg-light">
-            <div class="container-fluid">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">Expenses</li>
-                </ol>
-            </div>
+<div class="d-flex flex-row">
+    <div class="expense-search mt-2 flex-fill">
+        <form>
+            <input type="text" class="form-control" id="search-input" placeholder="Search">
+        </form>
+    </div>
+    <a href="{% url 'add_expense' %}" class="btn btn-primary mt-2 h-50 ms-5">Add Expense</a>
+</div>
+
+
+<div class="expense-table-container">
+    <div class="expense-table mt-2">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Ammount({{ currency }})</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <div hidden id="curr_page_num"></div>
+            </tbody>
+        </table>
+    </div>
+    <div class="paginator-container" style="display: flex;width: 100%; justify-content: space-between;">
+        <div id="page_num">
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item page-link" id="prev_page" style="cursor: pointer;">Previous</li>
+                <li class="page-item page-link" id="next_page" style="cursor: pointer;">Next</li>
+            </ul>
         </nav>
     </div>
-    <div class="col-md-2">
-        <a href="{% url 'add_expense' %}" class="btn btn-primary w-100 h-100">Add Expense</a>
-    </div>
-</div>
-<div class="expense-search mt-2">
-    <form>
-        <input type="text" class="form-control" id="search-input" placeholder="Search">
-    </form>
 </div>
 
-
-<div class="expense-table mt-2">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Ammount({{ currency }})</th>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Category</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <div hidden id="curr_page_num"></div>
-        </tbody>
-    </table>
-</div>
-<div class="paginator-container" style="display: flex;width: 100%; justify-content: space-between;">
-    <div id="page_num">
+<!-- <h5>past 30 days summary</h5> -->
+<!-- <hr> -->
+<div class="d-flex justify-content-between">
+    <div class="pie-chart-container">
+        <canvas id="pie-chart"></canvas>
     </div>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item page-link" id="prev_page" style="cursor: pointer;">Previous</li>
-            <li class="page-item page-link" id="next_page" style="cursor: pointer;">Next</li>
-        </ul>
-    </nav>
+    <div class="line-chart-container">
+        <canvas id="line-chart"></canvas>
+    </div>
 </div>
-<div class="expense-chart-container">
-    <canvas id="expense-chart"></canvas>
-</div>
+
 
 <script src="{% static 'expenses/index.js' %}"></script>
 {% endblock %}

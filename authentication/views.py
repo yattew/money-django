@@ -50,7 +50,7 @@ class LoginView(View):
         return render(request,'authentication/login.html')
 
 class LogoutView(View):
-    def post(self, request):
+    def get(self, request):
         auth.logout(request)
         messages.success(request, "you have been logged out")
         return redirect('login')

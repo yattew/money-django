@@ -125,12 +125,23 @@ def expense_summary(request):
     curr_date = datetime.date.today()
     date_30_day_before = curr_date-datetime.timedelta(days=30)
     expenses = Expense.objects.filter(owner = request.user,date__gte=date_30_day_before)
+    pie_data = {}
+    line_data = {}
     data = {}
     for expense in expenses:
-        if expense.category not in data:
-            data[expense.category] = expense.ammount
+        if expense.category not in pie_data:
+            pie_data[expense.category] = expense.ammount
         else:
-            data[expense.category]+=expense.ammount
-    
+            pie_data[expense.category]+=expense.ammount
+    for expense in expenses:
+        date = str(expense.date)
+        if date not in line_data:
+            line_data[date] = expense.ammount
+        else:
+            line_data[date]+=expense.ammount
     # for i in expenses:
-    return JsonResponse({"summary":data})
+    data = {
+        "pie_data":pie_data,
+        "line_data":line_data
+    }
+    return JsonResponse(data)
