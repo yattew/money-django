@@ -124,7 +124,7 @@ def expense_search(request,page_num=1):
 def expense_summary(request):
     curr_date = datetime.date.today()
     date_30_day_before = curr_date-datetime.timedelta(days=30)
-    expenses = Expense.objects.filter(owner = request.user,date__gte=date_30_day_before)
+    expenses = Expense.objects.filter(owner = request.user,date__gte=date_30_day_before).order_by("date")
     pie_data = {}
     line_data = {}
     data = {}

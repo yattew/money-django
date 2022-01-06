@@ -1,0 +1,28 @@
+.income-table-container{
+    min-height:260px;
+}
+
+.pie-chart-container{
+    width:45%;
+    height:350px;
+    padding:1rem;
+    border:1px rgb(180, 178, 178) solid;
+    border-radius: 3px;
+
+}
+.pie-chart-container > canvas{
+    height:100%;
+    width: 100%;
+}
+
+.line-chart-container{
+    width:45%;
+    height:350px;
+    padding:1rem;
+    border:1px rgb(180, 178, 178) solid;
+    border-radius: 3px;
+}
+.line-chart-container > div{
+    height:100%;
+    width: 100%;
+}

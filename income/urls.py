@@ -7,4 +7,5 @@ urlpatterns = [
     path("income_search/<int:page_num>",csrf_exempt(income_search),name="income_search"),
     path("edit_income/<int:id>",edit_income,name="edit_income"),
     path("delete_income/<int:id>",delete_income,name="delete_income"),
+    path('income_summary',csrf_exempt(income_summary),name="income_summary")
 ]

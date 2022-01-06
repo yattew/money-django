@@ -1,14 +1,10 @@
 {% extends '../base/base.html' %}
+{% block breadcrumb %}
+<span class="text-capitalize">/ expenses / edit expense</span>
+{% endblock %}
 {% block content %}
 
-<nav aria-label="breadcrumb" class="navbar navbar-light bg-light">
-    <div class="container-fluid">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'expenses' %}">Expenses</a></li>
-            <li class="breadcrumb-item">Edit Expense</li>
-        </ol>
-    </div>
-</nav>
+
 <div class="card mt-5">
     
     <div class="card-body">

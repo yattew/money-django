@@ -8,6 +8,7 @@ import json
 from django.db.models import Q
 from django.core.paginator import Paginator
 from user_preferences.models import UserPreference
+import datetime
 # Create your views here.
 
 
@@ -111,3 +112,28 @@ def income_search(request, page_num=1):
         "tot_pages": page_obj.paginator.num_pages,
     }
     return JsonResponse(data, safe=False)
+
+def income_summary(request):
+    curr_date = datetime.date.today()
+    date_30_day_before = curr_date-datetime.timedelta(days=30)
+    incomes = Income.objects.filter(owner = request.user,date__gte=date_30_day_before).order_by("date")
+    pie_data = {}
+    line_data = {}
+    data = {}
+    for income in incomes:
+        if income.source not in pie_data:
+            pie_data[income.source] = income.ammount
+        else:
+            pie_data[income.source]+=income.ammount
+    for income in incomes:
+        date = str(income.date)
+        if date not in line_data:
+            line_data[date] = income.ammount
+        else:
+            line_data[date]+=income.ammount
+    # for i in incomes:
+    data = {
+        "pie_data":pie_data,
+        "line_data":line_data
+    }
+    return JsonResponse(data) 

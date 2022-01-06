@@ -1,52 +1,59 @@
 {% extends '../base/base.html' %}
 {% load static %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'income/main.css' %}">
+{% endblock %}
+{% block breadcrumb %}
+<span class="text-capitalize">/ income</span>
+{% endblock %}
 {% block content %}
-<div class="row">
-    <div class="col-md-10">
-        <nav aria-label="breadcrumb" class="navbar navbar-light bg-light">
-            <div class="container-fluid">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">Income</li>
-                </ol>
-            </div>
+<div class="d-flex flex-row">
+    <div class="expense-search mt-2 flex-fill">
+        <input type="text" class="form-control" id="search-input" placeholder="Search">
+    </div>
+    <a href="{% url 'add_income' %}" class="btn btn-primary mt-2 h-50 ms-5">Add Income</a>
+</div>
+
+<div class="income-table-container">
+    <div class="income-table mt-2">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Ammount({{ currency }})</th>
+                    <th>Date</th>
+                    <th>Source</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <div hidden id="curr_page_num"></div>
+            </tbody>
+        </table>
+    </div>
+    <div class="paginator-container" style="display: flex;width: 100%; justify-content: space-between;">
+        <div id="page_num">
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item page-link" id="prev_page" style="cursor: pointer;">Previous</li>
+                <li class="page-item page-link" id="next_page" style="cursor: pointer;">Next</li>
+            </ul>
         </nav>
     </div>
-    <div class="col-md-2">
-        <a href="{% url 'add_income' %}" class="btn btn-primary w-100 h-100">Add Income</a>
-    </div>
-</div>
-<div class="income-search mt-2">
-    <form>
-        <input type="text" class="form-control" id="search-input" placeholder="Search">
-    </form>
 </div>
 
-
-<div class="income-table mt-2">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Ammount({{ currency }})</th>
-                <th>Date</th>
-                <th>Source</th>
-                <th>Category</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <div hidden id="curr_page_num"></div>
-        </tbody>
-    </table>
-</div>
-<div class="paginator-container" style="display: flex;width: 100%; justify-content: space-between;">
-    <div id="page_num">
+<div class="d-flex justify-content-between">
+    <div class="pie-chart-container">
+        <canvas id="pie-chart"></canvas>
     </div>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item page-link" id="prev_page" style="cursor: pointer;">Previous</li>
-            <li class="page-item page-link" id="next_page" style="cursor: pointer;">Next</li>
-        </ul>
-    </nav>
+    <div class="line-chart-container">
+        <canvas id="line-chart"></canvas>
+    </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
+        integrity="sha512-TW5s0IT/IppJtu76UbysrBH9Hy/5X41OTAbQuffZFU6lQ1rdcLHzpU5BzVvr/YFykoiMYZVWlr/PX1mDcfM9Qg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{% static 'income/index.js' %}"></script>
 {% endblock %}
